@@ -13,6 +13,9 @@ bool isDot(int px, int py) {
 }
 
 void setPixel(int x, int y, Uint32 color) {
+    if (x >= WIDTH || y >= HEIGHT) {
+        return;
+    }
     if (isDot(x, y)) {
         color = 0xffffff;
     }

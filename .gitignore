@@ -1,4 +1,6 @@
 IsoSketch
+*.swp
+*.swo
 
 # Compiled Object files
 *.slo

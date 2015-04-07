@@ -2,12 +2,12 @@
 #include "SDL/SDL_image.h"
 #include "SDL/SDL_ttf.h"
 
-#define WIDTH 500
-#define HEIGHT 500
+#define WIDTH 1920
+#define HEIGHT 1080
 
-#define CUBE_ROOT_3 1.442249
+#define CUBE_ROOT_3 1.73205
 
-#define DOT_DISTANCE 30
+#define DOT_DISTANCE 20
 #define DOT_DIST_W DOT_DISTANCE
 #define DOT_DIST_H (DOT_DISTANCE * CUBE_ROOT_3 / 2)
 
