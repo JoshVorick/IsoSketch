@@ -5,6 +5,9 @@
 #define WIDTH 1920
 #define HEIGHT 1080
 
+#define FPS 16
+#define TIME_BETWEEN_FRAMES (1000 / FPS)
+
 #define CUBE_ROOT_3 1.73205
 
 #define DOT_DISTANCE 20

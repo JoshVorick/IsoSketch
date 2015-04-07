@@ -15,6 +15,7 @@ point getNearestDot(point p);
 
 int main(void){
     bool notDone = 1;
+    int fpsLimit = TIME_BETWEEN_FRAMES;
     
     SDL_Init(SDL_INIT_VIDEO);
     TTF_Init();
@@ -130,6 +131,11 @@ int main(void){
             oldLine = curLine;
         }
         SDL_Flip(screen);
+
+        unsigned int ticks = SDL_GetTicks();
+        if (ticks < fpsLimit)
+            SDL_Delay(fpsLimit - ticks);
+        fpsLimit = SDL_GetTicks() + TIME_BETWEEN_FRAMES;
     }
 
     TTF_Quit();
