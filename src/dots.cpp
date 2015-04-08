@@ -1,8 +1,7 @@
 #include "dots.h"
 
-bool operator ==(point a, point b) {
-    return (a.x == b.x) && (a.y == b.y);
-}
+bool operator ==(point a, point b) { return (a.x == b.x) && (a.y == b.y); }
+bool operator !=(point a, point b) { return (a.x != b.x) || (a.y != b.y); }
 
 // Returns coordinates of dot nearest to input coordinates
 point getNearestDot(point p) {

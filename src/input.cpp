@@ -14,11 +14,31 @@ void processInput(progVars* pv) {
             exit(0);
             break;
         case SDL_KEYDOWN:
-            if (event.key.keysym.sym == SDLK_ESCAPE) {
+            switch (event.key.keysym.sym) {
+            case SDLK_ESCAPE:
                 TTF_Quit();
                 SDL_Quit();
                 free(layerCount);
                 exit(0);
+                break;
+            case SDLK_LCTRL:
+            case SDLK_RCTRL:
+                pv->ctrlDown = 1;
+                break;
+            }
+            break;
+        case SDL_KEYUP:
+            switch (event.key.keysym.sym) {
+            case SDLK_LCTRL:
+            case SDLK_RCTRL:
+                pv->ctrlDown = 0;
+                break;
+            case SDLK_z:
+                if (pv->lines.size() > 0) {
+                    pv->toErase = pv->lines.back();
+                    pv->lines.pop_back();
+                }
+                break;
             }
             break;
         case SDL_MOUSEMOTION:
@@ -39,6 +59,7 @@ void processInput(progVars* pv) {
         case SDL_MOUSEBUTTONUP:
             if (event.button.button == SDL_BUTTON_LEFT) {
                 pv->mouseDown = 0;
+                pv->lines.push_back(pv->curLine);
                 pv->curLine = {{0, 0}, {0, 0}};
                 pv->oldLine = pv->curLine;
             }

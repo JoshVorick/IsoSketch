@@ -8,8 +8,8 @@
 #include "SDL/SDL_image.h"
 #include "SDL/SDL_ttf.h"
 
-#define WIDTH 1920
-#define HEIGHT 1080
+#define WIDTH 400
+#define HEIGHT 400
 
 #define FPS 16
 #define TIME_BETWEEN_FRAMES (1000 / FPS)
