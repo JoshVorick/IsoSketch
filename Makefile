@@ -1,6 +1,6 @@
-FLAGS = -Wall -Werror
+FLAGS = -std=c++11 -Wall
 LFLAGS = `sdl-config --libs` -lSDL_image -lSDL_mixer -lSDL_ttf
-OBJS = src/graphics.o src/main.o
+OBJS = src/display.o src/dots.o src/input.o src/graphics.o src/main.o
 CXX = g++
 
 %.o: %.cpp %.h

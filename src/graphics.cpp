@@ -1,22 +1,14 @@
 #include "graphics.h"
+#include "dots.h"
 
 SDL_Surface *screen;
 char* layerCount;
-
-bool isDot(int px, int py) {
-        int y = (py + DOT_DIST_H / 2) / DOT_DIST_H;
-        int offset = (y % 2 == 0) ? DOT_DIST_W / 2 : 0;
-        double x = (px + offset) / DOT_DIST_W + (y % 2) / 2.0;
-        int dx = x * DOT_DIST_W;
-        int dy = y * DOT_DIST_H;   
-        return px == dx && py == dy;
-}
 
 void setPixel(int x, int y, Uint32 color) {
     if (x >= WIDTH || y >= HEIGHT) {
         return;
     }
-    if (isDot(x, y)) {
+    if (isDot({x, y})) {
         color = 0xffffff;
     }
     // Update layerCount
