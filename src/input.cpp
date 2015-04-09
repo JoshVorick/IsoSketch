@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "dots.h"
 #include "graphics.h" // Remove this after abstracting cleanup to a different function
+#include "saves.h"
 
 void processInput(progVars* pv) {
    SDL_Event event;
@@ -38,6 +39,12 @@ void processInput(progVars* pv) {
                     pv->toErase = pv->lines.back();
                     pv->lines.pop_back();
                 }
+                break;
+            case SDLK_s:
+                save(pv);
+                break;
+            case SDLK_l:
+                load(pv);
                 break;
             }
             break;

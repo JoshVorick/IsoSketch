@@ -1,4 +1,8 @@
+# IsoSketch objects
 IsoSketch
+*.isosketch
+
+# vim temp files
 *.swp
 *.swo
 
