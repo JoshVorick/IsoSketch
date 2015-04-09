@@ -78,6 +78,10 @@ void drawLine(int x1, int y1, int x2, int y2, Uint32 color) {
     }
 }
 
+void drawLine(line l, Uint32 color) {
+    drawLine(l.p1.x, l.p1.y, l.p2.x, l.p2.y, color);
+}
+
 SDL_Surface *loadImage(char *name) {
     printf("load image start\n");
     //load image all fancy-shmancy-like

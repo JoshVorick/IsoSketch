@@ -49,7 +49,7 @@ void load(progVars* pv) {
     SDL_FillRect(screen, NULL, 0x000000);
     drawAllDots();
     for (auto &l : pv->lines) {
-        drawLine(l.p1.x, l.p1.y, l.p2.x, l.p2.y, 0xffffff);
+        drawLine(l, 0xffffff);
     }
     SDL_Flip(screen);
 }

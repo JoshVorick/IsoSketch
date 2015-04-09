@@ -3,6 +3,13 @@
 #include "graphics.h" // Remove this after abstracting cleanup to a different function
 #include "saves.h"
 
+void undoLastLine(progVars *pv) {
+    if (pv->lines.size() > 0) {
+        pv->toErase = pv->lines.back();
+        pv->lines.pop_back();
+    }
+}
+
 void processInput(progVars* pv) {
    SDL_Event event;
 
@@ -34,17 +41,18 @@ void processInput(progVars* pv) {
             case SDLK_RCTRL:
                 pv->ctrlDown = 0;
                 break;
-            case SDLK_z:
-                if (pv->lines.size() > 0) {
-                    pv->toErase = pv->lines.back();
-                    pv->lines.pop_back();
-                }
+            case SDLK_l:
+                load(pv);
+                break;
+            case SDLK_u:
+                undoLastLine(pv);
                 break;
             case SDLK_s:
                 save(pv);
                 break;
-            case SDLK_l:
-                load(pv);
+            case SDLK_z:
+                if (pv->ctrlDown)
+                    undoLastLine(pv);
                 break;
             }
             break;
@@ -68,8 +76,8 @@ void processInput(progVars* pv) {
                 pv->mouseDown = 0;
                 // Update the drawn line one last time
                 // Otherwise there's a chance line has changed since it was drawn
-                drawLine(pv->oldLine.p1.x, pv->oldLine.p1.y, pv->oldLine.p2.x, pv->oldLine.p2.y, 0x000000);
-                drawLine(pv->curLine.p1.x, pv->curLine.p1.y, pv->curLine.p2.x, pv->curLine.p2.y, 0xffffff);
+                drawLine(pv->oldLine, 0x000000);
+                drawLine(pv->curLine, 0xffffff);
                 pv->lines.push_back(pv->curLine);
                 pv->curLine = {{0, 0}, {0, 0}};
                 pv->oldLine = pv->curLine;

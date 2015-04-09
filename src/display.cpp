@@ -20,16 +20,16 @@ void drawScreen(progVars *pv) {
     // If they hit control Z, toErase will the value of the most recent line they made
     point zero = {0, 0};
     if (pv->toErase.p1 != zero || pv->toErase.p2 != zero) {
-        drawLine(pv->toErase.p1.x, pv->toErase.p1.y, pv->toErase.p2.x, pv->toErase.p2.y, 0x000000);
+        drawLine(pv->toErase, 0x000000);
         pv->toErase = {zero, zero};
     }
 
     // If they're moving a line arond, draw it as they move the mouse
     if (pv->mouseDown) {
         // Erase the temporary line they drew last frame
-        drawLine(pv->oldLine.p1.x, pv->oldLine.p1.y, pv->oldLine.p2.x, pv->oldLine.p2.y, 0x000000);
+        drawLine(pv->oldLine, 0x000000);
         // Draw the new temporary line
-        drawLine(pv->curLine.p1.x, pv->curLine.p1.y, pv->curLine.p2.x, pv->curLine.p2.y, 0xffffff);
+        drawLine(pv->curLine, 0xffffff);
         pv->oldLine = pv->curLine;
     }
 
