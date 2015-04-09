@@ -59,6 +59,10 @@ void processInput(progVars* pv) {
         case SDL_MOUSEBUTTONUP:
             if (event.button.button == SDL_BUTTON_LEFT) {
                 pv->mouseDown = 0;
+                // Update the drawn line one last time
+                // Otherwise there's a chance line has changed since it was drawn
+                drawLine(pv->oldLine.p1.x, pv->oldLine.p1.y, pv->oldLine.p2.x, pv->oldLine.p2.y, 0x000000);
+                drawLine(pv->curLine.p1.x, pv->curLine.p1.y, pv->curLine.p2.x, pv->curLine.p2.y, 0xffffff);
                 pv->lines.push_back(pv->curLine);
                 pv->curLine = {{0, 0}, {0, 0}};
                 pv->oldLine = pv->curLine;
